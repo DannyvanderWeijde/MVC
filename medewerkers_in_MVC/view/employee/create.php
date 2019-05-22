@@ -7,29 +7,30 @@ $age = "";
 $data = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-		if (empty($_POST["Name"])){
+		if (empty($_POST["name"])){
 			$errName = "Je moet iets invullen";
 			$errors++;
 		}else{
-			$name = test_input($_POST["Name"]);
+			$name = test_input($_POST["name"]);
 			if(!preg_match("/^[a-zA-Z -]*?$/",$name)){
 				    $errName = "Je mag alleen letters en witruimte gebruiken.";
 				    $errors++;
 			}
 		}
-		if (empty($_POST["Age"])){
+		if (empty($_POST["age"])){
 			$errAge = "Je moet iets invullen";
 			$errors++;
 		}else{
-			$age = test_input($_POST["Age"]);
+			$age = test_input($_POST["age"]);
 			if(!preg_match("/^[0-9]*?$/",$age)){
 				    $errAge = "Je mag alleen cijfers invullen.";
 				    $errors++;
 			}
 		}
-		if ($errors == 0) {
+		if ($errors == 0){
 			$data[0] = $name;
 			$data[1] = $age;
+			store($data);
 		}
 }
 
@@ -45,13 +46,13 @@ function test_input($data) {
 <form name="create" method="POST" action="create">
 	<div>
 		<label>Naam</label>
-		<input type="text" name="Name" value="<?php echo $name ?>">
+		<input type="text" name="name" value="<?php echo $name ?>">
 		<span class="error"><?php echo $errName ?></span>
 	</div>
 
 	<div>
 		<label>Leeftijd</label>
-		<input type="text" name="Age" value="<?php echo $age ?>">
+		<input type="text" name="age" value="<?php echo $age ?>">
 		<span class="error"><?php echo $errAge ?></span>
 	</div>
 	<button type="submit">Toevoegen</button>

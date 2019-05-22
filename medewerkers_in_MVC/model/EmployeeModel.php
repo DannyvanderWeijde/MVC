@@ -72,13 +72,14 @@ function createEmployee($data){
     $name = $data[0];
     $age = $data[1];
     try {
-      $conn=openDatabaseConnection();
+        $conn=openDatabaseConnection();
 
-      $stmt = $conn->prepare("INSERT INTO employees(name,age) VALUES(:name, :age)");
+        $stmt = $conn->prepare("INSERT INTO employees(name,age) VALUES(:name, :age)");
 
-      $stmt->bindParam(":name", $name, ":age", $age);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":age", $age);
 
-      $stmt->execute();
+        $stmt->execute();
     }
     catch(PDOException $e){
 
@@ -92,11 +93,49 @@ function createEmployee($data){
 
  function updateEmployee($data){
     // Maak hier de code om een medewerker te bewerken
+    $name = $data[0];
+    $age = $data[1];
+    $id = $data[2];
+
+    try {
+        $conn=openDatabaseConnection();
+
+        $stmt = $conn->prepare("UPDATE employees SET name = :name, age = :age WHERE id = :id");
+
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":age", $age);
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
+    }
+    catch(PDOException $e){
+
+        echo "Connection failed: " . $e->getMessage();
+    }
+
+    $conn = null;
+ 
+    return $result;
  }
 
  function deleteEmployee($id){
     // Maak hier de code om een medewerker te verwijderen
+    try {
+        $conn=openDatabaseConnection();
+
+        $stmt = $conn->prepare("DELETE FROM employees WHERE id = :id");
+
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
+    }
+    catch(PDOException $e){
+
+        echo "Connection failed: " . $e->getMessage();
+    }
+
+    $conn = null;
+ 
+    return $result;
  }
-
-
 ?>

@@ -1,6 +1,5 @@
 	<?php
 		// maak een overzicht lijst van ALLE personen
-	// var_dump($employees);
 	?>
 	<h1>Overzicht van personen</h1>
 	<ul>
