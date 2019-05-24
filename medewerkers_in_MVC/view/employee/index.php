@@ -12,7 +12,7 @@
 			// Hij maakt van de eerste letter een hoofdletter en plakt er zelf "Controller" achter.
 			// Het woordje "update" of "delete" betekent dat hij in deze controller moet zoeken naar een method met deze naam.
 			?>
-			<a href="/employee/update/<?php echo $value["id"] ?>">Wijzigen</a> <a href="/employee/delete/<?php echo $value["id"] ?>">Verwijderen</a>
+			<a href="<?php echo URL ?>employee/edit/<?php echo $value["id"] ?>">Wijzigen</a> <a href="<?php echo URL ?>employee/delete/<?php echo $value["id"] ?>">Verwijderen</a>
 		</li>
 		<?php } ?>
 	</ul>
