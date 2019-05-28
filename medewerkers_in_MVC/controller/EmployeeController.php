@@ -68,8 +68,6 @@ function update($id){
     $errors = 0;
     $errName = "";
     $errAge = "";
-    $name = "";
-    $age = "";
     $data = [];
     $employee = [];
     $employee['id'] = $id;
